@@ -13,7 +13,7 @@ val homeModule = module {
     factory { provideBackend(get()) }
     factory { HomeApiFetcher(get()) }
     factory { HomeViewStateConverter() }
-    factory { HomeRepository(get(), get()) }
+    factory { HomeRepository(get(), get(), get()) }
     viewModel { HomeViewModel(get()) }
 }
 

@@ -9,8 +9,7 @@ class HomeViewModel(private val repository: HomeRepository) : BaseViewModel<Home
     fun getUser() {
         viewModelScope().launch(Dispatchers.IO) {
             repository.getUserAsync()
-                .subscribe({ println(it) },
-                    { println(it) })
+                .subscribe { println(it) }
         }
     }
 }
