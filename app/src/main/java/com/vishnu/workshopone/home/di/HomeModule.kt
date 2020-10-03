@@ -1,9 +1,23 @@
 package com.vishnu.workshopone.home.di
 
+import com.vishnu.core.home.api.HomeApiFetcher
+import com.vishnu.core.home.api.HomeBackend
+import com.vishnu.workshopone.home.HomeRepository
 import com.vishnu.workshopone.home.HomeViewModel
+import com.vishnu.workshopone.home.viewstate.HomeViewStateConverter
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
+import retrofit2.Retrofit
 
 val homeModule = module {
-    viewModel { HomeViewModel() }
+    factory { provideBackend(get()) }
+    factory { HomeApiFetcher(get()) }
+    factory { HomeViewStateConverter() }
+    factory { HomeRepository(get(), get()) }
+    viewModel { HomeViewModel(get()) }
+}
+
+private fun provideBackend(builder: Retrofit.Builder): HomeBackend {
+    return builder.build()
+        .create(HomeBackend::class.java)
 }
