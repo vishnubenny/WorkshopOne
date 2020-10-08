@@ -12,7 +12,7 @@ open class BaseViewModel<N : BaseNavigator> : ViewModel() {
 
     private lateinit var navigator: WeakReference<N>
 
-    private val errorHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
+    private val errorHandler = CoroutineExceptionHandler { _, throwable ->
         handleException(throwable)
     }
     private val errorLiveData = MutableLiveData<ErrorViewState>()
