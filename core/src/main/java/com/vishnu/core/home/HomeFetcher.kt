@@ -6,6 +6,6 @@ import kotlinx.coroutines.Deferred
 
 interface HomeFetcher {
 
-    suspend fun getUserAsync(): Single<ApiUser>
+    suspend fun getUserAsync(): Deferred<ApiUser>
 
 }

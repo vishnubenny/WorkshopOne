@@ -5,8 +5,6 @@ import com.vishnu.core.base.BaseActivity
 import com.vishnu.workshopone.BR
 import com.vishnu.workshopone.R
 import com.vishnu.workshopone.databinding.ActivityHomeBinding
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding, HomeNavigator>() {
@@ -29,5 +27,7 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding, HomeNaviga
         super.onCreate(savedInstanceState)
 
         homeViewModel.getUser()
+        homeViewModel.errorLiveData()
+            .observe(this, { homeViewModel.isLoadingLiveData.postValue(false) })
     }
 }

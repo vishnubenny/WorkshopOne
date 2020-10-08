@@ -63,9 +63,6 @@ dependencies {
     //moshi
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
 
-    // rx kotlin
-    implementation "com.github.ReactiveX:RxKotlin:$rx_kotlin_version"
-
     // coroutine
     implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$coroutine_adapter"
 

@@ -55,9 +55,6 @@ dependencies {
     //retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
 
-    // rx kotlin
-    implementation "com.github.ReactiveX:RxKotlin:$rx_kotlin_version"
-
     // Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
 }
