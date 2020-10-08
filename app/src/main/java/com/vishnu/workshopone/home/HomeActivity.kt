@@ -28,6 +28,8 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding, HomeNaviga
 
         homeViewModel.getUser()
         homeViewModel.errorLiveData()
-            .observe(this, { homeViewModel.isLoadingLiveData.postValue(false) })
+            .observe(this, {
+
+            })
     }
 }

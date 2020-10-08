@@ -5,17 +5,14 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.databinding.BindingAdapter
 
-class BindingHelper {
+object BindingHelper {
 
-    companion object {
-
-        @BindingAdapter("isVisible")
-        @JvmStatic
-        fun isVisible(view: View, isVisible: Boolean) {
-            view.visibility = when {
-                isVisible -> VISIBLE
-                else -> GONE
-            }
+    @BindingAdapter("isVisible")
+    @JvmStatic
+    fun isVisible(view: View, isVisible: Boolean) {
+        view.visibility = when {
+            isVisible -> VISIBLE
+            else -> GONE
         }
     }
 }
