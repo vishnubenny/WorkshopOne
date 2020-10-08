@@ -10,6 +10,8 @@ import java.lang.ref.WeakReference
 
 open class BaseViewModel<N : BaseNavigator> : ViewModel() {
 
+    val isLoading = MutableLiveData(false)
+
     private lateinit var navigator: WeakReference<N>
 
     private val errorHandler = CoroutineExceptionHandler { _, throwable ->
@@ -28,8 +30,16 @@ open class BaseViewModel<N : BaseNavigator> : ViewModel() {
     fun errorHandler(): CoroutineExceptionHandler = errorHandler
     fun errorLiveData(): MutableLiveData<ErrorViewState> = errorLiveData
 
+    fun setIsLoading(
+        isLoading: Boolean = true,
+        errorViewState: ErrorViewState = ErrorViewState.EMPTY
+    ) {
+        this.isLoading.postValue(isLoading)
+        errorLiveData.postValue(errorViewState)
+    }
+
     private fun handleException(throwable: Throwable) {
         Log.e("tag", throwable.message, throwable)
-        errorLiveData.postValue(ErrorViewState(throwable))
+        setIsLoading(false, ErrorViewState(ErrorType.UNKNOWN))
     }
 }
