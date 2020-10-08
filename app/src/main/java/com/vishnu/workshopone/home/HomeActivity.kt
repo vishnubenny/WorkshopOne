@@ -1,5 +1,6 @@
 package com.vishnu.workshopone.home
 
+import android.os.Bundle
 import com.vishnu.core.base.BaseActivity
 import com.vishnu.workshopone.BR
 import com.vishnu.workshopone.R
@@ -21,4 +22,12 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding, HomeNaviga
     override fun getBindingVariable(): Int = BR.viewModel
 
     override fun getNavigator(): HomeNavigator = listener
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        homeViewModel.getUser()
+        homeViewModel.errorLiveData()
+            .observe(this, { homeViewModel.isLoadingLiveData.postValue(false) })
+    }
 }

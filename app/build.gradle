@@ -14,6 +14,7 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -52,4 +53,20 @@ dependencies {
     implementation "org.koin:koin-android:$koin_version"
     // or Koin for Android Architecture ViewModel
     implementation "org.koin:koin-android-viewmodel:$koin_version"
+
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
+
+    //retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+
+    //moshi
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+
+    // coroutine
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$coroutine_adapter"
+
+    // okHttp
+    implementation "com.squareup.okhttp3:okhttp:$retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$logging_interceptor"
 }
