@@ -14,7 +14,8 @@ class HomeViewModel(private val repository: HomeRepository) : BaseViewModel<Home
     @ExperimentalCoroutinesApi
     fun getUser() {
         viewModelScope().launch(errorHandler()) {
-            repository.getUserAsync().collect {
+            repository.getUserAsync()
+                .collect {
                 setIsLoading(it is UserViewState.Loading)
                 if (it is UserViewState.Success) userLiveData.postValue(it)
             }
