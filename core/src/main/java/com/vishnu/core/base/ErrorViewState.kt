@@ -1,5 +1,7 @@
 package com.vishnu.core.base
 
+import java.net.UnknownHostException
+
 data class ErrorViewState(val errorType: ErrorType) {
 
     companion object {
@@ -15,6 +17,9 @@ enum class ErrorType {
 
 object ErrorViewStateConverter {
     fun apply(throwable: Throwable): ErrorViewState {
-        return ErrorViewState(ErrorType.UNKNOWN)
+        return when (throwable) {
+            is UnknownHostException -> ErrorViewState(ErrorType.NO_INTERNET)
+            else -> ErrorViewState(ErrorType.UNKNOWN)
+        }
     }
 }
