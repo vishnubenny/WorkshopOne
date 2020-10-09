@@ -1,3 +1,6 @@
 package com.vishnu.workshopone.home.viewstate
 
-data class UserViewState(val email: String)
+sealed class UserViewState() {
+    object Loading : UserViewState()
+    data class Success(val email: String) : UserViewState()
+}
