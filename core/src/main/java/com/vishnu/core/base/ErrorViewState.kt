@@ -12,3 +12,9 @@ enum class ErrorType {
     NO_INTERNET,
     UNKNOWN
 }
+
+object ErrorViewStateConverter {
+    fun apply(throwable: Throwable): ErrorViewState {
+        return ErrorViewState(ErrorType.UNKNOWN)
+    }
+}
