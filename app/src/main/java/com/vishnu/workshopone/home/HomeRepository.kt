@@ -1,5 +1,6 @@
 package com.vishnu.workshopone.home
 
+import com.vishnu.core.base.BaseViewState
 import com.vishnu.core.home.api.HomeApiFetcher
 import com.vishnu.core.utils.getValue
 import com.vishnu.workshopone.home.viewstate.UserViewState
@@ -11,10 +12,10 @@ import kotlinx.coroutines.flow.onStart
 class HomeRepository(private val fetcher: HomeApiFetcher) {
 
     @ExperimentalCoroutinesApi
-    suspend fun getUserAsync(): Flow<UserViewState> {
+    suspend fun getUserAsync(): Flow<BaseViewState> {
         return fetcher.getUserAsync()
-            .map { UserViewState.Success(it.email.getValue()) }
-            .onStart<UserViewState> { emit(UserViewState.Loading) }
+            .map { BaseViewState.Success(UserViewState(it.email.getValue())) }
+            .onStart<BaseViewState> { emit(BaseViewState.Loading) }
     }
 
 }
