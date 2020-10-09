@@ -1,6 +1,5 @@
 package com.vishnu.core.base
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -39,7 +38,6 @@ open class BaseViewModel<N : BaseNavigator> : ViewModel() {
     }
 
     private fun handleException(throwable: Throwable) {
-        Log.e("tag", throwable.message, throwable)
-        setIsLoading(false, ErrorViewState(ErrorType.UNKNOWN))
+        setIsLoading(false, ErrorViewStateConverter.apply(throwable))
     }
 }
