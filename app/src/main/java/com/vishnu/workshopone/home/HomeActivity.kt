@@ -27,9 +27,5 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding, HomeNaviga
         super.onCreate(savedInstanceState)
 
         homeViewModel.getUser()
-        homeViewModel.errorLiveData()
-            .observe(this, {
-
-            })
     }
 }

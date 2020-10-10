@@ -5,5 +5,6 @@ import com.vishnu.workshopone.home.di.homeModule
 
 val appModule = listOf(
     networkModule,
+    commonModule,
     homeModule
 )
