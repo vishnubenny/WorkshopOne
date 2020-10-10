@@ -17,7 +17,6 @@ class HomeViewModel(private val repository: HomeRepository) : BaseViewModel<Home
         viewModelScope().launch {
             repository.getUserAsync()
                 .collect {
-                    setIsLoading(it is BaseViewState.Loading)
                     when (it) {
                         BaseViewState.Loading -> setIsLoading()
                         is BaseViewState.Success<*> -> if (it.data is UserViewState) {
