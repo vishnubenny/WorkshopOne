@@ -16,15 +16,21 @@ class HomeViewModel(private val repository: HomeRepository) : BaseViewModel<Home
     fun getUser() {
         viewModelScope().launch {
             repository.getUserAsync()
-                .collect {
-                    when (it) {
-                        BaseViewState.Loading -> setIsLoading()
-                        is BaseViewState.Success<*> -> if (it.data is UserViewState) {
-                            userLiveData.postValue(it.data as UserViewState)
-                        }
-                        is BaseViewState.Error -> setIsLoading(false, it.errorViewState)
+                .collect { viewState ->
+                    setIsLoading(viewState is BaseViewState.Loading)
+                    when (viewState) {
+                        BaseViewState.Loading -> setIsLoading(true)
+                        is BaseViewState.Success<*> -> handleSuccessViewState(viewState)
+                        is BaseViewState.Error -> setIsLoading(false, viewState.errorViewState)
                     }
                 }
         }
+    }
+
+    private fun handleSuccessViewState(viewState: BaseViewState.Success<*>) {
+        if (viewState.data is UserViewState) {
+            userLiveData.postValue(viewState.data as UserViewState)
+        }
+        setIsLoading(false)
     }
 }
