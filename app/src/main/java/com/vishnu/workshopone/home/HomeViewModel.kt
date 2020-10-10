@@ -18,8 +18,12 @@ class HomeViewModel(private val repository: HomeRepository) : BaseViewModel<Home
             repository.getUserAsync()
                 .collect {
                     setIsLoading(it is BaseViewState.Loading)
-                    if (it is BaseViewState.Success<*> && it.data is UserViewState) {
-                        userLiveData.postValue(it.data as UserViewState)
+                    when (it) {
+                        BaseViewState.Loading -> setIsLoading()
+                        is BaseViewState.Success<*> -> if (it.data is UserViewState) {
+                            userLiveData.postValue(it.data as UserViewState)
+                        }
+                        is BaseViewState.Error -> setIsLoading(false, it.errorViewState)
                     }
                 }
         }
