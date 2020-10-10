@@ -3,7 +3,6 @@ package com.vishnu.core.base
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import java.lang.ref.WeakReference
 
@@ -13,11 +12,6 @@ open class BaseViewModel<N : BaseNavigator> : ViewModel() {
 
     private lateinit var navigator: WeakReference<N>
 
-    private val errorHandler = CoroutineExceptionHandler { _, throwable ->
-        handleException(throwable)
-    }
-    private val errorLiveData = MutableLiveData<ErrorViewState>()
-
     fun setNavigator(navigator: N) {
         this.navigator = WeakReference(navigator)
     }
@@ -26,18 +20,8 @@ open class BaseViewModel<N : BaseNavigator> : ViewModel() {
         return viewModelScope
     }
 
-    fun errorHandler(): CoroutineExceptionHandler = errorHandler
-    fun errorLiveData(): MutableLiveData<ErrorViewState> = errorLiveData
-
-    fun setIsLoading(
-        isLoading: Boolean = true,
-        errorViewState: ErrorViewState = ErrorViewState.EMPTY
-    ) {
+    fun setIsLoading(isLoading: Boolean = true) {
         this.isLoading.postValue(isLoading)
-        errorLiveData.postValue(errorViewState)
     }
 
-    private fun handleException(throwable: Throwable) {
-        setIsLoading(false, ErrorViewStateConverter.apply(throwable))
-    }
 }
