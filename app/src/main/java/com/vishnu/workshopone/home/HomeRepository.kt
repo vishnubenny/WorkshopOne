@@ -4,6 +4,7 @@ import com.vishnu.core.base.BaseViewState
 import com.vishnu.core.base.ErrorViewStateConverter
 import com.vishnu.core.home.api.HomeApiFetcher
 import com.vishnu.core.utils.combineLatest
+import com.vishnu.core.utils.flatMap
 import com.vishnu.core.utils.mapper
 import com.vishnu.core.utils.onError
 import com.vishnu.core.utils.startFlow
@@ -41,6 +42,14 @@ class HomeRepository(
             .startFlow(BaseViewState.Loading)
             .onError(errorViewStateConverter)
 
+    }
+
+    suspend fun getUserFlatMapOperation(): Flow<BaseViewState> {
+        return fetcher.getUserAsync()
+            .flatMap { fetcher.getUserAsync() }
+            .mapper(converter)
+            .startFlow(BaseViewState.Loading)
+            .onError(errorViewStateConverter)
     }
 
 }
