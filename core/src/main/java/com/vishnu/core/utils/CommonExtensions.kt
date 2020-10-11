@@ -15,7 +15,7 @@ fun String?.getValue(default: String = EMPTY_STRING): String {
 
 @Suppress("EXPERIMENTAL_API_USAGE")
 fun <T> Flow<T>.startFlow(loader: T): Flow<T> {
-    return this.onStart<T> { emit(loader) }
+    return this.onStart { emit(loader) }
 }
 
 fun <T, R> Flow<T>.mapper(converter: Converter<T, R>): Flow<R> {
