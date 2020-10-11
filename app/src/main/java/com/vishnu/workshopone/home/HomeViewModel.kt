@@ -13,7 +13,7 @@ class HomeViewModel(private val repository: HomeRepository) : BaseViewModel<Home
 
     fun getUser() {
         viewModelScope().launch {
-            repository.get3UsersExample()
+            repository.getUserFlatMapOperation()
                 .collect { viewState ->
                     when (viewState) {
                         BaseViewState.Loading -> setIsLoading(true)

@@ -8,6 +8,7 @@ import com.vishnu.core.converter.Converter5
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flatMapConcat
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.zip
@@ -58,4 +59,9 @@ fun <T1, T2, T3, T4, T5, R> Flow<T1>.combineLatest(
     return combine(flow = this, other1, other2, other3, other4) { t1, t2, t3, t4, t5 ->
         converter5.apply(t1, t2, t3, t4, t5)
     }
+}
+
+@Suppress("EXPERIMENTAL_API_USAGE")
+fun <T, R> Flow<T>.flatMap(transform: suspend (value: T) -> Flow<R>): Flow<R> {
+    return this.flatMapConcat(transform)
 }
