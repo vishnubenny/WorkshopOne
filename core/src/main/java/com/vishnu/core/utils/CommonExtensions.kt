@@ -3,6 +3,8 @@ package com.vishnu.core.utils
 import com.vishnu.core.converter.BiConverter
 import com.vishnu.core.converter.Converter
 import com.vishnu.core.converter.Converter3
+import com.vishnu.core.converter.Converter4
+import com.vishnu.core.converter.Converter5
 import com.vishnu.core.utils.Constants.EMPTY_STRING
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -38,4 +40,27 @@ fun <T1, T2, T3, R> Flow<T1>.combineLatest(
     converter3: Converter3<T1, T2, T3, R>
 ): Flow<R> {
     return combine(flow = this, other1, other2) { t1, t2, t3 -> converter3.apply(t1, t2, t3) }
+}
+
+fun <T1, T2, T3, T4, R> Flow<T1>.combineLatest(
+    other1: Flow<T2>,
+    other2: Flow<T3>,
+    other3: Flow<T4>,
+    converter4: Converter4<T1, T2, T3, T4, R>
+): Flow<R> {
+    return combine(flow = this, other1, other2, other3) { t1, t2, t3, t4 ->
+        converter4.apply(t1, t2, t3, t4)
+    }
+}
+
+fun <T1, T2, T3, T4, T5, R> Flow<T1>.combineLatest(
+    other1: Flow<T2>,
+    other2: Flow<T3>,
+    other3: Flow<T4>,
+    other4: Flow<T5>,
+    converter5: Converter5<T1, T2, T3, T4, T5, R>
+): Flow<R> {
+    return combine(flow = this, other1, other2, other3, other4) { t1, t2, t3, t4, t5 ->
+        converter5.apply(t1, t2, t3, t4, t5)
+    }
 }
