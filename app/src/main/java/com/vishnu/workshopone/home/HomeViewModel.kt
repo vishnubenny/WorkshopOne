@@ -13,7 +13,7 @@ class HomeViewModel(private val repository: HomeRepository) : BaseViewModel<Home
 
     fun getUser() {
         viewModelScope().launch {
-            repository.getUserAsync()
+            repository.get2UsersExample()
                 .collect { viewState ->
                     when (viewState) {
                         BaseViewState.Loading -> setIsLoading(true)
