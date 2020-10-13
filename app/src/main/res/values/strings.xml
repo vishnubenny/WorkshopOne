@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">WorkshopOne</string>
+    <string name="go_to_user_profile">Go to user profile</string>
 </resources>
