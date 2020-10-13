@@ -28,9 +28,14 @@ class HomeFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpView(view)
+    }
+
+    private fun setUpView(view: View) {
         val navController = Navigation.findNavController(view)
-        viewModel.event.observe(this, {
-            navController.navigate(R.id.action_homeFragment_to_myAccountFragment2)
-        })
+        viewModel.showFragment2Event()
+            .observe(this, {
+                navController.navigate(R.id.action_homeFragment_to_myAccountFragment2)
+            })
     }
 }

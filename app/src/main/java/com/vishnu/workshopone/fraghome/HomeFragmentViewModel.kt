@@ -5,9 +5,11 @@ import com.vishnu.workshopone.common.util.SingleLiveEvent
 
 class HomeFragmentViewModel : BaseViewModel<HomeFragmentNavigator>() {
 
-    val event = SingleLiveEvent<Any>()
+    private val showFragment2Event = SingleLiveEvent<Any>()
+
+    fun showFragment2Event(): SingleLiveEvent<Any> = showFragment2Event
 
     fun onShowFragment2Clicked() {
-        event.call()
+        showFragment2Event.call()
     }
 }
