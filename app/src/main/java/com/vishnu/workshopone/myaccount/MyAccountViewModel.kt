@@ -8,7 +8,10 @@ import com.vishnu.workshopone.home.viewstate.UserViewState
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class MyAccountViewModel(private val repository: HomeRepository) :
+class MyAccountViewModel(
+    private val repository: HomeRepository,
+    private val userDataSource: UserDataSource
+) :
     BaseViewModel<MyAccountNavigator>() {
 
     val userViewStateData = MutableLiveData<UserViewState>()
@@ -20,12 +23,19 @@ class MyAccountViewModel(private val repository: HomeRepository) :
                     when (viewState) {
                         BaseViewState.Loading -> setIsLoading()
                         is BaseViewState.Success<*> -> if (viewState.data is UserViewState) {
-                            userViewStateData.postValue(viewState.data as UserViewState)
+                            userDataSource.save(viewState.data as UserViewState)
                             setIsLoading(false)
                         }
                         is BaseViewState.Error -> setIsLoading(false)
                     }
                 }
+        }
+    }
+
+    fun observeDataSource() {
+        viewModelScope().launch {
+            userDataSource.flowSubject()
+                .collect { viewState -> userViewStateData.postValue(viewState) }
         }
     }
 }
