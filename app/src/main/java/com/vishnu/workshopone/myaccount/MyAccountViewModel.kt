@@ -38,4 +38,9 @@ class MyAccountViewModel(
                 .collect { viewState -> userViewStateData.postValue(viewState) }
         }
     }
+
+    override fun onCleared() {
+        super.onCleared()
+        userDataSource.setDefaults()
+    }
 }
