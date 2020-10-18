@@ -16,8 +16,7 @@ class UserDataSource {
     }
 
     fun flowSubject(): Flow<UserViewState> {
-        return flowOf(subject.value)
-            .distinctUntilChanged()
+        return subject.distinctUntilChanged { old, new -> old == new }
     }
 
     fun setDefaults() {

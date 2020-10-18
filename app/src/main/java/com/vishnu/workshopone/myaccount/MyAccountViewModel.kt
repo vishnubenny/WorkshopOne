@@ -5,6 +5,7 @@ import com.vishnu.core.base.BaseViewModel
 import com.vishnu.core.base.BaseViewState
 import com.vishnu.workshopone.home.HomeRepository
 import com.vishnu.workshopone.home.viewstate.UserViewState
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -15,9 +16,10 @@ class MyAccountViewModel(
     BaseViewModel<MyAccountNavigator>() {
 
     val userViewStateData = MutableLiveData<UserViewState>()
+    private val scope = viewModelScope()
 
     fun getUser() {
-        viewModelScope().launch {
+        scope.launch {
             repository.getUserAsync()
                 .collect { viewState ->
                     when (viewState) {
@@ -33,7 +35,7 @@ class MyAccountViewModel(
     }
 
     fun observeDataSource() {
-        viewModelScope().launch {
+        scope.launch {
             userDataSource.flowSubject()
                 .collect { viewState -> userViewStateData.postValue(viewState) }
         }
@@ -41,6 +43,7 @@ class MyAccountViewModel(
 
     override fun onCleared() {
         super.onCleared()
+        scope.cancel()
         userDataSource.setDefaults()
     }
 }
