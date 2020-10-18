@@ -4,7 +4,7 @@ import com.vishnu.workshopone.home.viewstate.UserViewState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
-
+import kotlinx.coroutines.flow.flowOf
 
 @Suppress("EXPERIMENTAL_API_USAGE")
 class UserDataSource {
@@ -16,7 +16,8 @@ class UserDataSource {
     }
 
     fun flowSubject(): Flow<UserViewState> {
-        return subject.distinctUntilChanged { old, new -> old == new }
+        return flowOf(subject.value)
+            .distinctUntilChanged()
     }
 
     fun setDefaults() {
