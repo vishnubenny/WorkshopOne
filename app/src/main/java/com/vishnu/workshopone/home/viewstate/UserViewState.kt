@@ -1,3 +1,10 @@
 package com.vishnu.workshopone.home.viewstate
 
-data class UserViewState(val email: String)
+import com.vishnu.core.utils.Constants.EMPTY_STRING
+
+data class UserViewState(val email: String) {
+
+    companion object {
+        val EMPTY = UserViewState(EMPTY_STRING)
+    }
+}

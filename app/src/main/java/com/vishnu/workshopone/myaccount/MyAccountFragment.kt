@@ -31,6 +31,7 @@ class MyAccountFragment :
     }
 
     private fun setUpViewModel() {
+        viewModel.observeDataSource()
         viewModel.getUser()
     }
 }
