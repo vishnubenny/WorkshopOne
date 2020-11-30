@@ -16,6 +16,8 @@ open class BaseViewModel<N : BaseNavigator> : ViewModel() {
         this.navigator = WeakReference(navigator)
     }
 
+    fun navigator(): N? = navigator.get()
+
     fun viewModelScope(): CoroutineScope {
         return viewModelScope
     }

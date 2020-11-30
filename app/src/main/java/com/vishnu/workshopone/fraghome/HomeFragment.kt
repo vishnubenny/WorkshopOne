@@ -1,5 +1,6 @@
 package com.vishnu.workshopone.fraghome
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.Navigation
@@ -15,7 +16,9 @@ class HomeFragment :
     private val viewModel: HomeFragmentViewModel by viewModel<HomeFragmentViewModel>()
 
     private val listener = object : HomeFragmentNavigator {
-
+        override fun getContext(): Context {
+            return this@HomeFragment.requireContext()
+        }
     }
 
     override fun layoutId(): Int = R.layout.fragment_home
