@@ -52,7 +52,7 @@ dependencies {
     implementation "io.insert-koin:koin-android:$koin_version"
 
     // Coroutines
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
 
     //retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
