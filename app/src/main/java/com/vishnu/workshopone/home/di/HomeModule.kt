@@ -7,7 +7,7 @@ import com.vishnu.workshopone.home.HomeViewModel
 import com.vishnu.workshopone.home.viewstate.BiUserConverter
 import com.vishnu.workshopone.home.viewstate.ThreeUserConverter
 import com.vishnu.workshopone.home.viewstate.UserViewStateConverter
-import org.koin.android.viewmodel.dsl.viewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 
