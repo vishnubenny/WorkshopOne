@@ -14,6 +14,8 @@ import androidx.compose.ui.graphics.Color
 import com.vishnu.workshopone.ui.theme.AppTheme
 import com.vishnu.workshopone.ui.theme.Text
 import com.vishnu.workshopone.ui.theme.Title
+import com.vishnu.workshopone.ui.theme.allPadding
+import com.vishnu.workshopone.ui.theme.horPadding
 
 class ComposeHomeActivity : ComponentActivity() {
 
@@ -31,8 +33,11 @@ class ComposeHomeActivity : ComponentActivity() {
                             .fillMaxSize(),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Title(title = "Hello world!")
-                        Text(text = "This is sample text content under a headline. This sample project trying to design some basic compose UI.")
+                        Title(title = "Hello world!", modifier = Modifier.allPadding())
+                        Text(
+                            text = "This is sample text content under a headline. This sample project trying to design some basic compose UI.",
+                            modifier = Modifier.horPadding()
+                        )
                     }
                 }
             }
