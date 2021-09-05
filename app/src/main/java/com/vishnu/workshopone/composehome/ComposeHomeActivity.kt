@@ -8,16 +8,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.sp
 import com.vishnu.workshopone.ui.theme.AppTheme
+import com.vishnu.workshopone.ui.theme.Text
+import com.vishnu.workshopone.ui.theme.Title
 
-//Sample Compose Activity
 class ComposeHomeActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,16 +31,11 @@ class ComposeHomeActivity : ComponentActivity() {
                             .fillMaxSize(),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        SetHeader(header = "Hello world!")
-                        SetHeader(header = "Hello world! Hello world")
+                        Title(title = "Hello world!")
+                        Text(text = "This is sample text content under a headline. This sample project trying to design some basic compose UI.")
                     }
                 }
             }
         }
     }
-}
-
-@Composable
-fun SetHeader(header: String) {
-    Text(text = header, fontSize = 30.sp, textAlign = TextAlign.Center)
 }
