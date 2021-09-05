@@ -5,4 +5,5 @@ object Constants {
     const val INT_18 = 18
     const val INT_16 = 16
     const val INT_8 = 8
+    const val INT_20 = 20
 }
