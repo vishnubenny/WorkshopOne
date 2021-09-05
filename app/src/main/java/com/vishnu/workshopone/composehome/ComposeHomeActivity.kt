@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 
+//Sample Compose Activity
 class ComposeHomeActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
