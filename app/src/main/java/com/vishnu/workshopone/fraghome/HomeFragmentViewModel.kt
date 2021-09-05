@@ -6,10 +6,15 @@ import com.vishnu.workshopone.common.util.SingleLiveEvent
 class HomeFragmentViewModel : BaseViewModel<HomeFragmentNavigator>() {
 
     private val showFragment2Event = SingleLiveEvent<Any>()
+    val tapOnComposeHomeActivityEvent = SingleLiveEvent<Any>()
 
     fun showFragment2Event(): SingleLiveEvent<Any> = showFragment2Event
 
     fun onShowFragment2Clicked() {
         showFragment2Event.call()
+    }
+
+    fun tapOnComposeHomeActivity() {
+        tapOnComposeHomeActivityEvent.call()
     }
 }

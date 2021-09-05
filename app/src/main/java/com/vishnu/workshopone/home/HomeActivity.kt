@@ -1,5 +1,6 @@
 package com.vishnu.workshopone.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -7,12 +8,14 @@ import androidx.navigation.ui.NavigationUI
 import com.vishnu.core.base.BaseActivity
 import com.vishnu.workshopone.BR
 import com.vishnu.workshopone.R
+import com.vishnu.workshopone.composehome.ComposeHomeActivity
 import com.vishnu.workshopone.databinding.ActivityHomeBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding, HomeNavigator>() {
 
     private val homeViewModel: HomeViewModel by viewModel()
+    private val sharedHomeViewModel: SharedHomeViewModel by viewModel()
 
     private val listener = object : HomeNavigator {
 
@@ -37,9 +40,18 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding, HomeNaviga
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navigationController = navHostFragment.navController
         NavigationUI.setupActionBarWithNavController(this, navigationController)
+
+        observeSharedHomeViewModel()
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return navigationController.navigateUp()
+    }
+
+    private fun observeSharedHomeViewModel() {
+        sharedHomeViewModel.tapOnComposeHomeActivityEvent
+            .observe(this, {
+                startActivity(Intent(this@HomeActivity, ComposeHomeActivity::class.java))
+            })
     }
 }

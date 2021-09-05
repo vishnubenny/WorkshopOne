@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">WorkshopOne</string>
     <string name="go_to_user_profile">Go to user profile</string>
+    <string name="navigate_to_compose_home_activity">Navigate to Compose Home Activity</string>
 </resources>
