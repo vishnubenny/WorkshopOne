@@ -15,6 +15,7 @@
         android:background="@color/white">
 
         <Button
+            android:id="@+id/btnUserProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
@@ -22,5 +23,15 @@
             android:text="@string/go_to_user_profile"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen_8dp"
+            android:background="?attr/colorPrimary"
+            android:onClick="@{() -> viewModel.tapOnComposeHomeActivity()}"
+            android:text="@string/navigate_to_compose_home_activity"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toTopOf="@id/btnUserProfile" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

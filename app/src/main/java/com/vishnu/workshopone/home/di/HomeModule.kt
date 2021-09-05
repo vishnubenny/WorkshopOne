@@ -4,6 +4,7 @@ import com.vishnu.core.home.api.HomeApiFetcher
 import com.vishnu.core.home.api.HomeBackend
 import com.vishnu.workshopone.home.HomeRepository
 import com.vishnu.workshopone.home.HomeViewModel
+import com.vishnu.workshopone.home.SharedHomeViewModel
 import com.vishnu.workshopone.home.viewstate.BiUserConverter
 import com.vishnu.workshopone.home.viewstate.ThreeUserConverter
 import com.vishnu.workshopone.home.viewstate.UserViewStateConverter
@@ -19,6 +20,7 @@ val homeModule = module {
     factory { ThreeUserConverter() }
     factory { HomeRepository(get(), get(), get(), get(), get()) }
     viewModel { HomeViewModel(get()) }
+    single { SharedHomeViewModel() }
 }
 
 private fun provideBackend(builder: Retrofit.Builder): HomeBackend {

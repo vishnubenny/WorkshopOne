@@ -1,11 +1,11 @@
 package com.vishnu.workshopone.common.util
 
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import java.util.concurrent.atomic.AtomicBoolean
 
-class SingleLiveEvent<T> : MutableLiveData<T>() {
+class SingleLiveEvent<T> : LiveData<T>() {
 
     private val mPending = AtomicBoolean(false)
 
@@ -23,6 +23,6 @@ class SingleLiveEvent<T> : MutableLiveData<T>() {
     }
 
     fun call() {
-        value = null
+        postValue(null)
     }
 }

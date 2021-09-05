@@ -7,12 +7,14 @@ import com.vishnu.core.base.BaseFragment
 import com.vishnu.workshopone.BR
 import com.vishnu.workshopone.R
 import com.vishnu.workshopone.databinding.FragmentHomeBinding
+import com.vishnu.workshopone.home.SharedHomeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment :
     BaseFragment<HomeFragmentViewModel, FragmentHomeBinding, HomeFragmentNavigator>() {
 
     private val viewModel: HomeFragmentViewModel by viewModel<HomeFragmentViewModel>()
+    private val sharedHomeViewModel: SharedHomeViewModel by viewModel<SharedHomeViewModel>()
 
     private val listener = object : HomeFragmentNavigator {
 
@@ -37,5 +39,7 @@ class HomeFragment :
             .observe(this, {
                 navController.navigate(R.id.action_homeFragment_to_myAccountFragment2)
             })
+        viewModel.tapOnComposeHomeActivityEvent
+            .observe(this, { sharedHomeViewModel.tapOnComposeHomeActivityEvent.call() })
     }
 }
